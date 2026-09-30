@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIDE — Premium Footwear</title>
+  <meta name="description" content="STRIDE — premium sneakers, boots, heels and everyday footwear. Free delivery within Nairobi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👟</text></svg>" />
+</head>
+<body>
+  <!-- Announcement bar -->
+  <div class="announce">Free delivery within Nairobi on orders over KSh 5,000 &nbsp;·&nbsp; Pay with M-Pesa, card or cash on delivery</div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <a href="#" class="logo">STRIDE<span>.</span></a>
+      <nav class="nav" id="nav">
+        <a href="#shop" data-cat="all">Shop All</a>
+        <a href="#shop" data-cat="sneakers">Sneakers</a>
+        <a href="#shop" data-cat="boots">Boots</a>
+        <a href="#shop" data-cat="heels">Heels</a>
+        <a href="#shop" data-cat="sandals">Sandals</a>
+        <a href="#about">About</a>
+      </nav>
+      <div class="header__actions">
+        <button class="icon-btn" id="searchToggle" aria-label="Search">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </button>
+        <button class="icon-btn cart-btn" id="cartToggle" aria-label="Open cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar">
+      <div class="container">
+        <input type="search" id="searchInput" placeholder="Search shoes, brands, styles…" autocomplete="off" />
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <img src="assets/hero.jpg" alt="Premium leather sneaker" class="hero__img" />
+      <div class="container hero__content">
+        <p class="eyebrow">New Season · 2026</p>
+        <h1>Step into<br />something <em>better.</em></h1>
+        <p class="hero__sub">Hand-picked footwear for every stride — from courtside classics to boardroom essentials.</p>
+        <div class="hero__cta">
+          <a href="#shop" class="btn btn--primary">Shop the collection</a>
+          <a href="#featured" class="btn btn--ghost">View bestsellers</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust strip -->
+    <section class="trust">
+      <div class="container trust__grid">
+        <div><strong>Free delivery</strong><span>Nairobi orders over KSh 5,000</span></div>
+        <div><strong>30-day returns</strong><span>Wrong size? Swap it, no fuss</span></div>
+        <div><strong>100% authentic</strong><span>Every pair verified</span></div>
+        <div><strong>M-Pesa ready</strong><span>Pay how you like</span></div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section categories">
+      <div class="container">
+        <div class="section__head">
+          <h2>Shop by category</h2>
+        </div>
+        <div class="cat-grid">
+          <button class="cat-card" data-cat="sneakers"><img src="assets/shoe-1.jpg" alt="" /><span>Sneakers</span></button>
+          <button class="cat-card" data-cat="boots"><img src="assets/shoe-3.jpg" alt="" /><span>Boots</span></button>
+          <button class="cat-card" data-cat="heels"><img src="assets/shoe-4.jpg" alt="" /><span>Heels</span></button>
+          <button class="cat-card" data-cat="formal"><img src="assets/shoe-6.jpg" alt="" /><span>Formal</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured -->
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="section__head">
+          <h2>Bestsellers</h2>
+          <a href="#shop" class="link">See everything →</a>
+        </div>
+        <div class="product-grid" id="featuredGrid"></div>
+      </div>
+    </section>
+
+    <!-- Promo banner -->
+    <section class="promo">
+      <div class="container promo__inner">
+        <div>
+          <p class="eyebrow eyebrow--light">Limited time</p>
+          <h2>Buy 2 pairs, get 15% off</h2>
+          <p>Automatically applied at checkout. Because one pair is never enough.</p>
+        </div>
+        <a href="#shop" class="btn btn--light">Start shopping</a>
+      </div>
+    </section>
+
+    <!-- Shop -->
+    <section class="section" id="shop">
+      <div class="container">
+        <div class="section__head">
+          <h2>All shoes</h2>
+          <p class="muted" id="resultCount"></p>
+        </div>
+
+        <div class="toolbar">
+          <div class="chips" id="catChips">
+            <button class="chip is-active" data-cat="all">All</button>
+            <button class="chip" data-cat="sneakers">Sneakers</button>
+            <button class="chip" data-cat="running">Running</button>
+            <button class="chip" data-cat="boots">Boots</button>
+            <button class="chip" data-cat="heels">Heels</button>
+            <button class="chip" data-cat="formal">Formal</button>
+            <button class="chip" data-cat="sandals">Sandals</button>
+          </div>
+          <div class="toolbar__right">
+            <select id="genderFilter" aria-label="Filter by gender">
+              <option value="all">Everyone</option>
+              <option value="men">Men</option>
+              <option value="women">Women</option>
+              <option value="unisex">Unisex</option>
+            </select>
+            <select id="sortSelect" aria-label="Sort products">
+              <option value="featured">Sort: Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+        <div class="empty" id="emptyState" hidden>
+          <p>No shoes match your search.</p>
+          <button class="btn btn--ghost" id="clearFilters">Clear filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about" id="about">
+      <div class="container about__grid">
+        <div class="about__img"><img src="assets/shoe-5.jpg" alt="Red suede high-top sneaker" /></div>
+        <div>
+          <p class="eyebrow">Our story</p>
+          <h2>Good shoes take you good places.</h2>
+          <p>STRIDE started in a small stall on Moi Avenue with one idea: everyone deserves footwear that looks sharp, feels right and lasts. Today we curate pairs from the world's best makers and deliver them to your door — same day in Nairobi.</p>
+          <div class="stats">
+            <div><strong>12k+</strong><span>Happy customers</span></div>
+            <div><strong>4.9★</strong><span>Average rating</span></div>
+            <div><strong>48h</strong><span>Countrywide delivery</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials">
+      <div class="container">
+        <div class="section__head"><h2>What customers say</h2></div>
+        <div class="testi-grid">
+          <blockquote>"Ordered at 10am, wearing them by 3pm. The Chelsea boots are unreal quality."<cite>— Brian K., Westlands</cite></blockquote>
+          <blockquote>"Finally a store that has half sizes! The heels fit perfectly and the packaging was lovely."<cite>— Wanjiru M., Kilimani</cite></blockquote>
+          <blockquote>"Returned a pair that ran small, replacement arrived the next day. Superb service."<cite>— Ahmed S., Mombasa</cite></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+      <div class="container newsletter__inner">
+        <div>
+          <h2>Get 10% off your first order</h2>
+          <p>Join the list for early access to drops and members-only prices.</p>
+        </div>
+        <form class="newsletter__form" id="newsletterForm">
+          <input type="email" placeholder="you@example.com" required />
+          <button class="btn btn--primary" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <a href="#" class="logo">STRIDE<span>.</span></a>
+        <p class="muted">Premium footwear, delivered.<br />Nairobi, Kenya.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="#shop">Sneakers</a><a href="#shop">Boots</a><a href="#shop">Heels</a><a href="#shop">Sandals</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="#">Size guide</a><a href="#">Delivery &amp; returns</a><a href="#">Track order</a><a href="#">Contact us</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:+254700000000">+254 700 000 000</a>
+        <a href="mailto:hello@stride.co.ke">hello@stride.co.ke</a>
+        <p class="muted">Mon–Sat, 9am–7pm</p>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 STRIDE. All rights reserved.</span>
+      <span>Prototype — v0.1</span>
+    </div>
+  </footer>
+
+  <!-- Cart drawer -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="drawer__head">
+      <h3>Your bag <span id="cartHeadCount"></span></h3>
+      <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
+    </div>
+    <div class="drawer__body" id="cartItems"></div>
+    <div class="drawer__foot" id="cartFoot">
+      <div class="row"><span>Subtotal</span><strong id="cartSubtotal">KSh 0</strong></div>
+      <div class="row muted small" id="cartDiscountRow" hidden><span>Bundle discount (15%)</span><span id="cartDiscount"></span></div>
+      <div class="row muted small"><span>Delivery</span><span id="cartDelivery">Calculated at checkout</span></div>
+      <div class="row total"><span>Total</span><strong id="cartTotal">KSh 0</strong></div>
+      <button class="btn btn--primary btn--block" id="checkoutBtn">Checkout</button>
+    </div>
+  </aside>
+
+  <!-- Product modal -->
+  <div class="modal" id="productModal" role="dialog" aria-modal="true">
+    <div class="modal__card">
+      <button class="icon-btn modal__close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal__img"><img id="mImg" src="" alt="" /></div>
+      <div class="modal__info">
+        <p class="eyebrow" id="mBrand"></p>
+        <h3 id="mName"></h3>
+        <div class="rating" id="mRating"></div>
+        <div class="price-row"><strong id="mPrice"></strong><s id="mOldPrice"></s></div>
+        <p class="muted" id="mDesc"></p>
+        <div class="field">
+          <label>Colour</label>
+          <div class="swatches" id="mColors"></div>
+        </div>
+        <div class="field">
+          <label>Size (EU) <a href="#" class="link small">Size guide</a></label>
+          <div class="sizes" id="mSizes"></div>
+        </div>
+        <div class="qty-row">
+          <div class="qty">
+            <button id="qtyMinus">−</button><span id="qtyVal">1</span><button id="qtyPlus">+</button>
+          </div>
+          <button class="btn btn--primary btn--grow" id="mAdd">Add to bag</button>
+        </div>
+        <ul class="perks">
+          <li>✓ Same-day delivery in Nairobi</li>
+          <li>✓ Free 30-day size exchange</li>
+          <li>✓ Pay with M-Pesa, card or cash</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout modal -->
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true">
+    <div class="modal__card modal__card--checkout">
+      <button class="icon-btn modal__close" id="checkoutClose" aria-label="Close">✕</button>
+      <div class="checkout" id="checkoutView">
+        <form id="checkoutForm" class="checkout__form">
+          <h3>Checkout</h3>
+          <div class="grid2">
+            <label>Full name<input required name="name" placeholder="Jane Doe" /></label>
+            <label>Phone<input required name="phone" type="tel" placeholder="07XX XXX XXX" /></label>
+          </div>
+          <label>Email<input required name="email" type="email" placeholder="jane@example.com" /></label>
+          <label>Delivery address<input required name="address" placeholder="Street, building, apartment" /></label>
+          <div class="grid2">
+            <label>City / Town<input required name="city" placeholder="Nairobi" /></label>
+            <label>Delivery
+              <select name="delivery" id="deliverySelect">
+                <option value="0">Standard — Free (2–3 days)</option>
+                <option value="350">Express Nairobi — KSh 350 (same day)</option>
+                <option value="600">Upcountry — KSh 600 (48h)</option>
+              </select>
+            </label>
+          </div>
+          <fieldset class="pay">
+            <legend>Payment</legend>
+            <label class="radio"><input type="radio" name="pay" value="mpesa" checked /> <span>M-Pesa</span></label>
+            <label class="radio"><input type="radio" name="pay" value="card" /> <span>Card</span></label>
+            <label class="radio"><input type="radio" name="pay" value="cod" /> <span>Cash on delivery</span></label>
+          </fieldset>
+          <button class="btn btn--primary btn--block" type="submit">Place order · <span id="checkoutTotal"></span></button>
+          <p class="muted small center">This is a prototype — no payment is taken.</p>
+        </form>
+        <aside class="checkout__summary">
+          <h4>Order summary</h4>
+          <div id="summaryItems"></div>
+          <div class="row"><span>Subtotal</span><span id="sumSubtotal"></span></div>
+          <div class="row" id="sumDiscountRow" hidden><span>Discount</span><span id="sumDiscount"></span></div>
+          <div class="row"><span>Delivery</span><span id="sumDelivery"></span></div>
+          <div class="row total"><span>Total</span><strong id="sumTotal"></strong></div>
+        </aside>
+      </div>
+      <div class="success" id="successView" hidden>
+        <div class="success__icon">✓</div>
+        <h3>Order placed!</h3>
+        <p>Thanks, <strong id="successName"></strong>. Your order <strong id="orderNo"></strong> is confirmed.<br />We've sent the details to <span id="successEmail"></span>.</p>
+        <button class="btn btn--primary" id="successDone">Continue shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
